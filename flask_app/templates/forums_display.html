@@ -1,0 +1,67 @@
+{% extends '/shared/base.html' %}
+
+{% block content%}
+<div class="card">
+    <h1 class="mt-5">Forums</h1>
+
+
+
+    <div id="error_display "></div>
+    <form class='d-flex justify-content-between mt-5' onsubmit="addForum(event)" id="newForum">
+        <div>
+            <div id="error_display"></div>
+            <div class="row mb-3">
+                <label for="name">Name (Topic)</label>
+                <input class="ms-3" type="text" name="name" id='name'>
+            </div>
+            <div class="row mb-3">
+                <label for="subject">Subject</label>
+                <input class="ms-3" type="text" name="subject" id='subject'></input>
+            </div>
+            <div class="row mb-3">
+                <label for="date_posted">Date:</label>
+                <input class="ms-3" type="date" name="date_posted" id='date_posted'>
+            </div>
+            <div class="row mb-3">
+                <label for="posting">Post</label>
+                <textarea class="ms-3" name="posting" id='posting'></textarea>
+            </div>
+            <button style="background-color: rgb(101, 46, 175)"><a style="color:rgb(238, 177, 69)">Submit</a></button>
+        </div>
+
+    </form>
+
+
+    <table class="table table-striped" style="background-color: rgb(238, 177, 69);">
+        <thead>
+            <tr>
+                <th class='text-center' scope="col">Name (Topic)</th>
+                <th class='text-center' scope="col">Subject</th>
+                <th class='text-center' scope="col">Date Posted</th>
+                <th class='text-center' scope="col">Posted By</th>
+                <th class='text-center' scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+            {%for one_forum in all_forums%}
+            <tr>
+                <th class='text-center' scope="row">{{one_forum.name}}</th>
+                <td class='text-center'>{{one_forum.subject}}</td>
+                <td class='text-center'>{{one_forum.date_posted}}</td>
+                <td class='text-center'>{{one_forum.member.first_name}} {{one_forum.member.last_name}}</td>
+                <td class='text-center'>
+                    <a href="/forums/{{one_forum.id}}/view">View Forum</a>
+                    {% if session ['user_id'] == one_forum.user_id %}
+                    <a href="/forums/{{one_forum.id}}/edit">| Edit</a>
+                    <a href="/forums/{{one_forum.id}}/delete">| Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}"></script>
+
+
+{% endblock content%}

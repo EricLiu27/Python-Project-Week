@@ -1,0 +1,39 @@
+{% extends '/shared/base.html' %}
+
+{% block content%}
+<form class='d-flex justify-content-between' action="/recipes/create" method='post'>
+    <div>
+        <div class="row mb-3">
+            <label for="name">Name</label>
+            <input type="text" name="name" id='name'>
+        </div>
+        <div class="row mb-3">
+            <label for="description">Description</label>
+            <textarea name="description" id='description'></textarea>
+        </div>
+        <div class="row mb-3">
+            <label for="instructions">Instructions</label>
+            <textarea name="instructions" id='instructions'></textarea>
+        </div>
+    </div>
+    <div>
+        <div class="row mb-3">
+            <label for="date_cooked">Date Cooked/Made:</label>
+            <input type="date" name="date_cooked" id='date_cooked'>
+        </div>
+        <div class="row mb-3">
+            <p>under 30 minutes?</p>
+            <div class='d-flex'>
+                <label for="yes">Yes</label>
+                <input type="radio" name="under_30" id='yes' value=1>
+                <label class='ms-2' for="no">No</label>
+                <input type="radio" name="under_30" id='no' value=0>
+            </div>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+
+
+{% endblock content%}

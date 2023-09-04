@@ -1,0 +1,35 @@
+{% extends '/shared/base.html' %}
+
+{% block content%}
+
+
+<div class="card mt-5">
+    {% for message in get_flashed_messages()%}
+    <p class="text-danger">{{message}}</p>
+    {% endfor %}
+    <form class='d-flex justify-content-between mt-5' action="/forums/{{one_forum.id}}/update" method='POST'>
+        <div>
+            <div id="error_display"></div>
+            <div class="row mb-3">
+                <label for="name">Name (Topic)</label>
+                <input class="ms-3" type="text" name="name" id='name' value="{{one_forum.name}}">
+            </div>
+            <div class="row mb-3">
+                <label for="subject">Subject</label>
+                <input class="ms-3" type="text" name="subject" id='subject' value="{{one_forum.subject}}">
+            </div>
+            <div class="row mb-3">
+                <label for="date_posted">Date:</label>
+                <input class="ms-3" type="date" name="date_posted" id='date_posted' value="{{one_forum.date_posted}}">
+            </div>
+            <div class="row mb-3">
+                <label for="posting">Post</label>
+                <textarea class="ms-3" name="posting" id='posting'>{{one_forum.posting}}</textarea>
+            </div>
+            <button style="background-color: rgb(101, 46, 175)"><a style="color:rgb(238, 177, 69)">Update</a></button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock content%}

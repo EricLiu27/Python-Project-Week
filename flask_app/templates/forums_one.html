@@ -1,0 +1,22 @@
+{% extends '/shared/base.html' %}
+
+{% block content%}
+
+<div class="card">
+    <h2 class="mt-5">{{one_forum.name}}</h2>
+    <h3>{{one_forum.posting}}</h2>
+        <h5>posted by: {{one_forum.member.first_name}}</h5>
+</div>
+
+<div class="card">
+    <form onsubmit="addForum(event)" id="newForum">
+        <label for="name">Leave a comment</label>
+        <div><textarea class="ms-3 w-75" type="text" name="name" id='name'> </textarea></div>
+
+        <button style="background-color: rgb(101, 46, 175)"><a style="color:rgb(238, 177, 69)">Comment</a></button>
+
+    </form>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='script/scripts.js') }}"></script>
+{% endblock content%}
